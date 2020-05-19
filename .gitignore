@@ -1,0 +1,9 @@
+question-2/.DS_Store
+question-2/node_modules
+question-2/dist
+question-2/.env.local
+question-2/.env.*.local
+question-2/npm-debug.log*
+question-2/yarn-debug.log*
+question-2/yarn-error.log*
+
