@@ -2,6 +2,9 @@
   <div id="example">
     <button v-on:click="previousPage">Previous Page</button>
     <button v-on:click="nextPage">Next Page</button>
+    <button v-on:click="sortByAlbumID">Sort/Reverse Sort by Album ID</button>
+    <button v-on:click="sortByAlbumTitle">Sort/Reverse Sort by Album Name</button>
+    <button v-on:click="sortByPhotoTitle">Sort/Reverse Sort by Photo Title</button>
 
     <table id="firstTable">
       <thead>
@@ -45,7 +48,10 @@ export default {
       page: 0,
       tableAlbums: [],
       loading: false,
-      error: undefined
+      error: undefined,
+      albumIDSort: 'asc',
+      albumTitleSort: 'asc',
+      photoTitleSort: 'asc'
     };
   },
   mounted: function() {
@@ -103,6 +109,39 @@ export default {
         let endingIndex = startingIndex + PAGE_SIZE;
         this.tableAlbums = this.albums.slice(startingIndex, endingIndex);
         this.page = previousPage;
+      }
+    },
+    sortByAlbumID: function() {
+      if(this.albumIDSort === 'asc') {
+        this.albums = this.albums.sort((a, b) => (a.id > b.id) ? -1 : 1);
+        this.albumIDSort = 'desc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
+      } else {
+        this.albums = this.albums.sort((a, b) => (a.id > b.id) ? 1 : -1);
+        this.albumIDSort = 'asc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
+      }
+    },
+    sortByAlbumTitle: function() {
+      if(this.albumTitleSort === 'asc') {
+        this.albums = this.albums.sort((a, b) => (a.title > b.title) ? -1 : 1);
+        this.albumTitleSort = 'desc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
+      } else {
+        this.albums = this.albums.sort((a, b) => (a.title > b.title) ? 1 : -1);
+        this.albumTitleSort = 'asc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
+      }
+    },
+    sortByPhotoTitle: function() {
+      if(this.photoTitleSort === 'asc') {
+        this.albums = this.albums.sort((a, b) => (a.photos[0] > b.photos[0]) ? -1 : 1);
+        this.photoTitleSort = 'desc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
+      } else {
+        this.albums = this.albums.sort((a, b) => (a.photos[0] > b.photos[0]) ? 1 : -1);
+        this.photoTitleSort = 'asc';
+        this.tableAlbums = this.albums.slice(0, PAGE_SIZE);
       }
     }
   }
