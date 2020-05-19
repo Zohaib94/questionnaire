@@ -1,17 +1,11 @@
 <template>
   <div id="example">
-    <button v-on:click="previousPage">Previous Page</button>
-    <button v-on:click="nextPage">Next Page</button>
-    <button v-on:click="sortByAlbumID">Sort/Reverse Sort by Album ID</button>
-    <button v-on:click="sortByAlbumTitle">Sort/Reverse Sort by Album Name</button>
-    <button v-on:click="sortByPhotoTitle">Sort/Reverse Sort by Photo Title</button>
-
     <table id="firstTable">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Photos</th>
+          <th><a href="#" v-on:click="sortByAlbumID">ID</a></th>
+          <th><a href="#" v-on:click="sortByAlbumTitle">Album Title</a></th>
+          <th><a href="#" v-on:click="sortByPhotoTitle">Photo Titles</a></th>
           <th>Thumbnail</th>
         </tr>
       </thead>
@@ -30,6 +24,8 @@
         </tr>
       </tbody>
     </table>
+    <button v-on:click="previousPage">Previous Page</button>
+    <button v-on:click="nextPage">Next Page</button>
   </div>
 </template>
 
